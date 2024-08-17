@@ -1,3 +1,4 @@
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 
 import 'services/router.dart';
@@ -12,11 +13,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Quick Find',
-      theme: getThemeData(Brightness.light),
-      darkTheme: getThemeData(Brightness.dark),
-      routerConfig: routers,
-    );
+    return DynamicColorBuilder(
+        builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+      return MaterialApp.router(
+        title: 'Quick Find',
+        theme: getThemeData(lightDynamic, Brightness.light),
+        darkTheme: getThemeData(darkDynamic, Brightness.dark),
+        routerConfig: routers,
+      );
+    });
   }
 }

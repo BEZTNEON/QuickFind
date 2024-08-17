@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-ThemeData getThemeData(Brightness brightness) {
-  final colorScheme = ColorScheme.fromSeed(
-    seedColor: Colors.blueAccent,
-    brightness: brightness,
-  );
+ThemeData getThemeData(ColorScheme? dynamicColor, Brightness brightness) {
+  final colorScheme = _getColorScheme(dynamicColor, brightness);
 
   return ThemeData(
     colorScheme: colorScheme,
@@ -14,4 +11,13 @@ ThemeData getThemeData(Brightness brightness) {
       fillColor: colorScheme.onInverseSurface,
     ),
   );
+}
+
+ColorScheme _getColorScheme(ColorScheme? dynamicColor, Brightness brightness) {
+  final defaultColorScheme = ColorScheme.fromSeed(
+    seedColor: Colors.blueAccent,
+    brightness: brightness,
+  );
+
+  return dynamicColor ?? defaultColorScheme;
 }
