@@ -1,3 +1,3 @@
-# quick_find
+# Quick Find
 
 A new Flutter project.
